@@ -60,6 +60,7 @@ CLE RIB: 42
 IBAN: FR76 2004 1010 0902 0974 6F03 042
 BIC: PSSTFRPPMON
 ACCOUNT: CTE CANTON GINESTAS LUTTE CONTRE LE CANCER, MAIRIE, 11590 OUVEILLAN
+COMMENT: Sainte-Valiere / Bru
 2. The Bru Foundation Fund
 (Banking details will be provided separately by Emily or Cédric.)
 

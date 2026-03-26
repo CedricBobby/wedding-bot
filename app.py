@@ -191,13 +191,7 @@ def webhook():
         reply = "SSorry, I'm having a little trouble right now. Please contact Emily or Cédric directly!"
 
     twiml = MessagingResponse()
-    msg = twiml.message(reply)
-
-    for keyword, url in PHOTOS.items():
-        if keyword in reply.lower() or keyword in incoming_msg.lower():
-            msg.media(url)
-            break
-
+    twiml.message(reply)
     return str(twiml)
 
 @app.route("/", methods=["GET"])

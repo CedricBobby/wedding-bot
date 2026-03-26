@@ -6,7 +6,22 @@ import os
 
 app = Flask(__name__)
 client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
-conversation_history = defaultdict(list)
+first_message_of_day = {}  # tracks {sender: date_string}
+
+from datetime import datetime, timezone
+
+today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+is_first_today = first_message_of_day.get(sender) != today
+first_message_of_day[sender] = today
+
+# Add context so Claude knows if this is the first message today
+if is_first_today:
+    context = incoming_msg
+else:
+    context = f"[NOT the first message today — do NOT repeat the welcome intro or mention French language support]\n{incoming_msg}"
+
+conversation_history[sender].append({"role": "user", "content": context})
+
 MAX_HISTORY = 30
 
 SYSTEM_PROMPT = """You are a warm and helpful wedding assistant for Emily and Cédric's wedding weekend, July 3–5, 2026, at Château Les Carrasses in the south of France. You answer guests' questions in a friendly, concise way.

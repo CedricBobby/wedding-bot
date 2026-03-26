@@ -149,21 +149,7 @@ FUN FACTS ABOUT EMILY AND CEDRIC
 - Cedric lost against Eva at blackjack
 - Cedric detroyed his car's paint while hand washing his car and using an abrasive sponge
 
-If you don't know the answer to something, suggest guest contact the wedding planner or Emily or Cédric directly. Keep responses concise and warm. Use bullet points for lists. Do not make up information.
-
-PHOTOS — include the relevant URL in your reply when a guest asks about these topics:
-- Carcassonne: ”https://i.imgur.com/JtoGA6y.jpeg
-- Emily Cedric: https://i.imgur.com/A6P8x1B.jpeg
-- Family: https://i.imgur.com/AmB5HhC.jpeg
-- Venue / Château exterior: https://i.imgur.com/Rh2ox1x.jpeg
-- Kids: https://i.imgur.com/KdndtLu.jpeg
-- Narbonne: https://i.imgur.com/u7RnXAo.jpeg
-- Emily Cedric: https://i.imgur.com/1zftXuj.jpeg
-- Venue / Chateau / Pool: “https://i.imgur.com/JqMOpuU.jpeg
-- Teo: https://i.imgur.com/RI9T7pK.jpeg
-- Teo: https://i.imgur.com/tT0IzSx.jpeg
-
-When sharing a photo, say something like: "Here's a photo of the venue: [URL]" """
+If you don't know the answer to something, suggest guest contact the wedding planner or Emily or Cédric directly. Keep responses concise and warm. Use bullet points for lists. Do not make up information."""
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -191,7 +177,42 @@ def webhook():
         reply = "SSorry, I'm having a little trouble right now. Please contact Emily or Cédric directly!"
 
     twiml = MessagingResponse()
-    twiml.message(reply)
+    msg = twiml.message(reply)
+
+    # Send photo as proper WhatsApp media attachment
+    PHOTOS = {
+      "Venue": [
+          "https://i.imgur.com/Rh2ox1x.jpeg",
+          "https://i.imgur.com/JqMOpuU.jpeg",
+      ],
+       "Emily Cedruc": [
+          "https://i.imgur.com/A6P8x1B.jpeg",
+          "https://i.imgur.com/1zftXuj.jpeg",
+      ],
+      "Teo": [
+          "https://i.imgur.com/RI9T7pK.jpeg",
+          "https://i.imgur.com/tT0IzSx.jpeg",
+      ],
+      "Family": [
+          "https://i.imgur.com/AmB5HhC.jpeg",
+          "https://i.imgur.com/KdndtLu.jpeg",
+      ],
+      "Gruissan": [
+          "https://i.imgur.com/Y61PyAA.jpeg",
+          "https://i.imgur.com/MA9har6.jpeg",
+      ],
+      "Carcassonne": ["https://i.imgur.com/JtoGA6y.jpeg"],
+      "Narbonne": ["https://i.imgur.com/u7RnXAo.jpeg"],  
+    }
+
+
+When sharing a photo, say something like: "Here's a photo of the venue: [URL]" 
+
+    for keyword, url in PHOTOS.items():
+        if keyword in reply.lower() or keyword in incoming_msg.lower():
+            msg.media(url)
+            break
+
     return str(twiml)
 
 @app.route("/", methods=["GET"])

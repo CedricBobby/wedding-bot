@@ -173,6 +173,7 @@ def webhook():
             messages=conversation_history[sender]  # ← full history instead of single message
         )
         reply = response.content[0].text
+        print(f"DEBUG reply: {reply}")  # ← here, right after getting the reply
         conversation_history[sender].append({"role": "assistant", "content": reply})  # ← save reply
     except Exception as e:
         print(f"Error: {e}")

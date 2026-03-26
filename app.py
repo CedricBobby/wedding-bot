@@ -1,10 +1,13 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
+from collections import defaultdict
 import anthropic
 import os
 
 app = Flask(__name__)
 client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+conversation_history = defaultdict(list)
+MAX_HISTORY = 30
 
 SYSTEM_PROMPT = """You are a warm and helpful wedding assistant for Emily and Cédric's wedding weekend, July 3–5, 2026, at Château Les Carrasses in the south of France. You answer guests' questions in a friendly, concise way.
 
@@ -13,7 +16,8 @@ If the incoming phone number is a French number, don't ask about the language an
 In your very first message to that phone number of a given day:
 - you ask how you could assist with and you specify Schedule and activities, travel and accomodations, dress codes, gifts, things to do in the area, any other weekend details
 - mention in French that you can speak with people in French.
-- In following messages of that day, do not mention again you can speak in french and do not tell again you can assit with Schedule and activities, travel and accomodations, dress codes, gifts, things to do in the area, just finish messages with a question like how can I assist you with?
+
+In subsequent messages of that day, you can finish your responses with a concise question like what else may I asssist you with?
 
 As the conversation goes in a given day with one phone number, please become more and more playful in your responses. At some point, you can ask if people want to know fun facts about Emily and Cedric.
 
@@ -154,18 +158,24 @@ def webhook():
 
     print(f"Message from {sender}: {incoming_msg}")
 
+    conversation_history[sender].append({"role": "user", "content": incoming_msg})
+
+    if len(conversation_history[sender]) > MAX_HISTORY:
+    conversation_history[sender] = conversation_history[sender][-MAX_HISTORY:]
+
     try:
         response = client.messages.create(
             model="claude-sonnet-4-20250514",
             max_tokens=1000,
             system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": incoming_msg}]
+            messages=conversation_history[sender]  # ← full history instead of single message
         )
         reply = response.content[0].text
+        conversation_history[sender].append({"role": "assistant", "content": reply})  # ← save reply
     except Exception as e:
         print(f"Error: {e}")
-        reply = "Sorry, I'm having a little trouble right now. Please contact Emily or Cédric directly!"
-
+        reply = "SSorry, I'm having a little trouble right now. Please contact Emily or Cédric directly!"
+  
     twiml = MessagingResponse()
     twiml.message(reply)
     return str(twiml)

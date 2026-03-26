@@ -185,31 +185,35 @@ def webhook():
     # Send photo as proper WhatsApp media attachment
     PHOTOS = {
       "Venue": [
-          "https://i.imgur.com/Rh2ox1x.jpeg",
-          "https://i.imgur.com/JqMOpuU.jpeg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554532/pool_o22ofq.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/chateau_nyuad5.jpg",
       ],
       "Cedric": [
-          "https://i.imgur.com/A6P8x1B.jpeg",
-          "https://i.imgur.com/1zftXuj.jpeg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/teo_birth_yffa3h.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/party_i0dozh.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554530/cedric_emily_jndh8h.jpg",
       ],
       "Emily": [
-          "https://i.imgur.com/A6P8x1B.jpeg",
-          "https://i.imgur.com/1zftXuj.jpeg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/teo_birth_yffa3h.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/party_i0dozh.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554530/cedric_emily_jndh8h.jpg",
       ],
       "Teo": [
-          "https://i.imgur.com/RI9T7pK.jpeg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554530/Teo_s1u3xw.jpg",
           "https://i.imgur.com/tT0IzSx.jpeg",
       ],
       "Family": [
-          "https://i.imgur.com/AmB5HhC.jpeg",
-          "https://i.imgur.com/KdndtLu.jpeg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/cedric_family_hq4kdy.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/family_snkgd1.jpg",
       ],
       "Gruissan": [
-          "https://i.imgur.com/Y61PyAA.jpeg",
-          "https://i.imgur.com/MA9har6.jpeg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554532/gruissan_ct5cut.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/gruissan3_bfqlnp.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/gruissan1_uhl1cq.jpg",
+          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/gruissan2_tcc1t6.jpg",
       ],
-      "Carcassonne": ["https://i.imgur.com/JtoGA6y.jpeg"],
-      "Narbonne": ["https://i.imgur.com/u7RnXAo.jpeg"],  
+      "Carcassonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/carcassonne_s75xuu.jpg"],
+      "Narbonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/narbonne_yr1pad.jpg"],  
     }
 
 

@@ -213,8 +213,9 @@ def webhook():
           "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/gruissan2_tcc1t6.jpg",
       ],
       "Carcassonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/carcassonne_s75xuu.jpg"],
-      "Narbonne": ["https://www.gstatic.com/webp/gallery/1.jpg"],
-      #"Narbonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/narbonne_yr1pad.jpg"],  
+      "Narbonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554532/gruissan_ct5cut"],
+      #"Narbonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/narbonne_yr1pad.jpg"], 
+      
     }
 
 

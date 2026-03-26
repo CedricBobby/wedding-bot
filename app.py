@@ -205,9 +205,6 @@ def webhook():
       "Narbonne": ["https://i.imgur.com/u7RnXAo.jpeg"],  
     }
 
-
-When sharing a photo, say something like: "Here's a photo of the venue: [URL]" 
-
     for keyword, url in PHOTOS.items():
         if keyword in reply.lower() or keyword in incoming_msg.lower():
             msg.media(url)

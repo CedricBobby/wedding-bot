@@ -151,7 +151,7 @@ FUN FACTS ABOUT EMILY AND CEDRIC
 
 If you don't know the answer to something, suggest guest contact the wedding planner or Emily or Cédric directly. Keep responses concise and warm. Use bullet points for lists. Do not make up information.
 
-You are able to share photos directly in this WhatsApp chat. When a guest asks to see a photo of the venue, pool, rooms, or any other location, simply say "Here are some photos!" and nothing else — the photos will be sent automatically. Never say you cannot share photos."""
+You can share photos of the venue, Emily, Cedric, Teo, family, Narbonne, Gruissan, and Carcassonne. When asked for photos, simply say "Here are some photos!" and they will be sent automatically. Never say you don't have photos."""
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -188,7 +188,11 @@ def webhook():
           "https://i.imgur.com/Rh2ox1x.jpeg",
           "https://i.imgur.com/JqMOpuU.jpeg",
       ],
-       "Emily Cedruc": [
+      "Cedric": [
+          "https://i.imgur.com/A6P8x1B.jpeg",
+          "https://i.imgur.com/1zftXuj.jpeg",
+      ],
+      "Emily": [
           "https://i.imgur.com/A6P8x1B.jpeg",
           "https://i.imgur.com/1zftXuj.jpeg",
       ],

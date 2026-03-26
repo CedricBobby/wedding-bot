@@ -257,9 +257,10 @@ Reply with ONLY the category name, nothing else."""
             print(f"DEBUG photo match: {matched}")
 
             if matched in PHOTOS:
-                for url in PHOTOS[matched]:
-                    print(f"DEBUG sending media: {url}")
-                    msg.media(url)
+              for url in PHOTOS[matched]:
+                print(f"DEBUG sending media: {url}")
+                separate_msg = twiml.message("")
+                separate_msg.media(url)
 
     except Exception as e:
         print(f"Photo error: {e}")

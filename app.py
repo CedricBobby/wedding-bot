@@ -250,6 +250,7 @@ Reply with ONLY the category name, nothing else."""
 
         if matched in PHOTOS:
             for url in PHOTOS[matched]:
+                print(f"DEBUG sending media: {url}")
                 msg.media(url)
 
     return str(twiml)

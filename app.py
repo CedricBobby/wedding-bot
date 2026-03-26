@@ -149,7 +149,9 @@ FUN FACTS ABOUT EMILY AND CEDRIC
 - Cedric lost against Eva at blackjack
 - Cedric detroyed his car's paint while hand washing his car and using an abrasive sponge
 
-If you don't know the answer to something, suggest guest contact the wedding planner or Emily or Cédric directly. Keep responses concise and warm. Use bullet points for lists. Do not make up information."""
+If you don't know the answer to something, suggest guest contact the wedding planner or Emily or Cédric directly. Keep responses concise and warm. Use bullet points for lists. Do not make up information.
+
+You are able to share photos directly in this WhatsApp chat. When a guest asks to see a photo of the venue, pool, rooms, or any other location, simply say "Here are some photos!" and nothing else — the photos will be sent automatically. Never say you cannot share photos."""
 
 @app.route("/webhook", methods=["POST"])
 def webhook():

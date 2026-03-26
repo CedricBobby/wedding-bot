@@ -1,27 +1,14 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from collections import defaultdict
+from datetime import datetime, timezone
 import anthropic
 import os
 
 app = Flask(__name__)
 client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
-first_message_of_day = {}  # tracks {sender: date_string}
-
-from datetime import datetime, timezone
-
-today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-is_first_today = first_message_of_day.get(sender) != today
-first_message_of_day[sender] = today
-
-# Add context so Claude knows if this is the first message today
-if is_first_today:
-    context = incoming_msg
-else:
-    context = f"[NOT the first message today — do NOT repeat the welcome intro or mention French language support]\n{incoming_msg}"
-
-conversation_history[sender].append({"role": "user", "content": context})
-
+conversation_history = defaultdict(list)
+first_message_of_day = {}
 MAX_HISTORY = 30
 
 SYSTEM_PROMPT = """You are a warm and helpful wedding assistant for Emily and Cédric's wedding weekend, July 3–5, 2026, at Château Les Carrasses in the south of France. You answer guests' questions in a friendly, concise way.
@@ -32,7 +19,7 @@ In your very first message to that phone number of a given day:
 - you ask how you could assist with and you specify Schedule and activities, travel and accomodations, dress codes, gifts, things to do in the area, any other weekend details
 - mention in French that you can speak with people in French.
 
-In subsequent messages of that day, you can finish your responses with a concise question like what else may I asssist you with?
+In subsequent messages of that day, you can finish your responses with a concise question like what else may I assist you with?
 
 As the conversation goes in a given day with one phone number, please become more and more playful in your responses. At some point, you can ask if people want to know fun facts about Emily and Cedric.
 
@@ -213,7 +200,18 @@ def webhook():
 
     print(f"Message from {sender}: {incoming_msg}")
 
-    conversation_history[sender].append({"role": "user", "content": incoming_msg})
+    # Track first message of the day per sender
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    is_first_today = first_message_of_day.get(sender) != today
+    first_message_of_day[sender] = today
+
+    # Add context so Claude knows if this is the first message today
+    if is_first_today:
+        context = incoming_msg
+    else:
+        context = f"[NOT the first message today — do NOT repeat the welcome intro or mention French language support again]\n{incoming_msg}"
+
+    conversation_history[sender].append({"role": "user", "content": context})
 
     if len(conversation_history[sender]) > MAX_HISTORY:
         conversation_history[sender] = conversation_history[sender][-MAX_HISTORY:]
@@ -272,10 +270,10 @@ Reply with ONLY the category name, nothing else."""
             print(f"DEBUG photo match: {matched}")
 
             if matched in PHOTOS:
-              for url in PHOTOS[matched]:
-                print(f"DEBUG sending media: {url}")
-                separate_msg = twiml.message("")
-                separate_msg.media(url)
+                for url in PHOTOS[matched]:
+                    print(f"DEBUG sending media: {url}")
+                    separate_msg = twiml.message("")
+                    separate_msg.media(url)
 
     except Exception as e:
         print(f"Photo error: {e}")

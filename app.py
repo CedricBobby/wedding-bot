@@ -161,7 +161,7 @@ def webhook():
     conversation_history[sender].append({"role": "user", "content": incoming_msg})
 
     if len(conversation_history[sender]) > MAX_HISTORY:
-    conversation_history[sender] = conversation_history[sender][-MAX_HISTORY:]
+        conversation_history[sender] = conversation_history[sender][-MAX_HISTORY:]
 
     try:
         response = client.messages.create(

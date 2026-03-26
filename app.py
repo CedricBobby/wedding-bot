@@ -54,18 +54,18 @@ Sunday, July 5:
 - Check-out by 11:00 AM
 
 ACCOMMODATIONS & MEALS:
-We have reserved the entire château and hope you’ll stay with us on the property. All meals and accommodations from Friday dinner through Sunday brunch will be provided. We want this to feel like a true holiday, and a time to relax and connect with each other.
+We have reserved the entire château and hope you'll stay with us on the property. All meals and accommodations from Friday dinner through Sunday brunch will be provided. We want this to feel like a true holiday, and a time to relax and connect with each other.
 
 If guests want to come early or stay late, they can contact the chateau to arrange accommodations.
 
 It may be hot and so please plan to dress in layers and bring swim suits for swimming at the chateau.
 
-As we get close to the event, inquiries about diatary restrictions will be sent.
+As we get close to the event, inquiries about dietary restrictions will be sent.
 
 For families traveling with children, babysitters can be coordinated by contacting the chateau.
 
 GUESTS:
-IF people ask for guests or attendees, respond this is a surprise but can tell that families and friends will attend. Téo who will be 10 months by then will be there.  
+If people ask for guests or attendees, respond this is a surprise but can tell that families and friends will attend. Téo who will be 10 months by then will be there.
 
 GIFTS:
 Emily and Cédric do not want any gifts. If guests absolutely wish to contribute, they may donate to one of two nonprofits:
@@ -131,12 +131,12 @@ WINE TASTING:
 
 KEY CONTACTS:
 - Local wedding planner is Mathilde: +33 6 61 81 11 78
-- Cédric's mobile
-- Emily's mobile
+- Cédric's mobile: +1-650-703-8790
+- Emily's mobile: +1-925-818-7169
 - Emily's parents: Alan and Patricia (Pat)
 - Cédric's parents: Catherine (Cathy) and Jean-Paul
 
-FUN FACTS ABOUT EMILY AND CEDRIC
+FUN FACTS ABOUT EMILY AND CEDRIC:
 - They both dream about doing a cross-atlantic cruise on a cargo ship
 - Cedric's dream is to be #1 tennis in the world by 80 years old
 - They will be missing their pets, especially Luna at the event
@@ -147,42 +147,12 @@ FUN FACTS ABOUT EMILY AND CEDRIC
 - Emily and Cedric met at the beginning of covid
 - Emily lost at Uno when she played with Eva for the first time
 - Cedric lost against Eva at blackjack
-- Cedric detroyed his car's paint while hand washing his car and using an abrasive sponge
+- Cedric destroyed his car's paint while hand washing his car using an abrasive sponge
 
 If you don't know the answer to something, suggest guest contact the wedding planner or Emily or Cédric directly. Keep responses concise and warm. Use bullet points for lists. Do not make up information.
 
 You can share photos of the venue, Emily, Cedric, Teo, family, Narbonne, Gruissan, and Carcassonne. When asked for photos, simply say "Here are some photos!" and they will be sent automatically. Never say you don't have photos."""
 
-@app.route("/webhook", methods=["POST"])
-def webhook():
-    incoming_msg = request.values.get("Body", "").strip()
-    sender = request.values.get("From", "")
-
-    print(f"Message from {sender}: {incoming_msg}")
-
-    conversation_history[sender].append({"role": "user", "content": incoming_msg})
-
-    if len(conversation_history[sender]) > MAX_HISTORY:
-        conversation_history[sender] = conversation_history[sender][-MAX_HISTORY:]
-
-    try:
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=1000,
-            system=SYSTEM_PROMPT,
-            messages=conversation_history[sender]  # ← full history instead of single message
-        )
-        reply = response.content[0].text
-        print(f"DEBUG reply: {reply}")  # ← here, right after getting the reply
-        conversation_history[sender].append({"role": "assistant", "content": reply})  # ← save reply
-    except Exception as e:
-        print(f"Error: {e}")
-        reply = "SSorry, I'm having a little trouble right now. Please contact Emily or Cédric directly!"
-
-    twiml = MessagingResponse()
-    msg = twiml.message(reply)
-
-    # Send photo as proper WhatsApp media attachment
 PHOTOS = {
     "Venue": [
         "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554532/pool_o22ofq",
@@ -221,51 +191,86 @@ PHOTOS = {
 }
 
 
-    # Only run photo matching if guest is asking for a photo
-    photo_trigger = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=10,
-        messages=[{
-            "role": "user",
-            "content": f"""Is the guest asking for a photo or image?
-Guest message: "{incoming_msg}"
-Reply with YES or NO only."""
-        }]
-    )
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    incoming_msg = request.values.get("Body", "").strip()
+    sender = request.values.get("From", "")
 
-    wants_photo = photo_trigger.content[0].text.strip().upper() == "YES"
-    print(f"DEBUG wants_photo: {wants_photo}")
+    print(f"Message from {sender}: {incoming_msg}")
 
-    if wants_photo:
-        photo_categories = list(PHOTOS.keys())
-        category_response = client.messages.create(
+    conversation_history[sender].append({"role": "user", "content": incoming_msg})
+
+    if len(conversation_history[sender]) > MAX_HISTORY:
+        conversation_history[sender] = conversation_history[sender][-MAX_HISTORY:]
+
+    try:
+        response = client.messages.create(
             model="claude-sonnet-4-20250514",
-            max_tokens=20,
+            max_tokens=1000,
+            system=SYSTEM_PROMPT,
+            messages=conversation_history[sender]
+        )
+        reply = response.content[0].text
+        print(f"DEBUG reply: {reply}")
+        conversation_history[sender].append({"role": "assistant", "content": reply})
+    except Exception as e:
+        print(f"Error: {e}")
+        reply = "Sorry, I'm having a little trouble right now. Please contact Emily or Cédric directly!"
+
+    twiml = MessagingResponse()
+    msg = twiml.message(reply)
+
+    # Only run photo matching if guest is asking for a photo
+    try:
+        photo_trigger = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=10,
             messages=[{
                 "role": "user",
-                "content": f"""The guest said: "{incoming_msg}"
+                "content": f"""Is the guest asking for a photo or image?
+Guest message: "{incoming_msg}"
+Reply with YES or NO only."""
+            }]
+        )
+
+        wants_photo = photo_trigger.content[0].text.strip().upper() == "YES"
+        print(f"DEBUG wants_photo: {wants_photo}")
+
+        if wants_photo:
+            photo_categories = list(PHOTOS.keys())
+            category_response = client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=20,
+                messages=[{
+                    "role": "user",
+                    "content": f"""The guest said: "{incoming_msg}"
 
 Which ONE of these photo categories best matches?
 Categories: {photo_categories}
 If none match, reply with: none
 
 Reply with ONLY the category name, nothing else."""
-            }]
-        )
+                }]
+            )
 
-        matched = category_response.content[0].text.strip()
-        print(f"DEBUG photo match: {matched}")
+            matched = category_response.content[0].text.strip()
+            print(f"DEBUG photo match: {matched}")
 
-        if matched in PHOTOS:
-            for url in PHOTOS[matched]:
-                print(f"DEBUG sending media: {url}")
-                msg.media(url)
+            if matched in PHOTOS:
+                for url in PHOTOS[matched]:
+                    print(f"DEBUG sending media: {url}")
+                    msg.media(url)
+
+    except Exception as e:
+        print(f"Photo error: {e}")
 
     return str(twiml)
-    
+
+
 @app.route("/", methods=["GET"])
 def health():
     return "Emily & Cédric Wedding Bot is running! 🎉"
+
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

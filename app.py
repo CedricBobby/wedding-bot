@@ -183,7 +183,7 @@ def webhook():
     msg = twiml.message(reply)
 
     # Send photo as proper WhatsApp media attachment
-  PHOTOS = {
+PHOTOS = {
     "Venue": [
         "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554532/pool_o22ofq",
         "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554529/chateau_nyuad5",
@@ -218,7 +218,7 @@ def webhook():
     "Narbonne": [
         "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/narbonne_yr1pad",
     ],
-  }
+}
 
 
     # Only run photo matching if guest is asking for a photo

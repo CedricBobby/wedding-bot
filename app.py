@@ -183,40 +183,42 @@ def webhook():
     msg = twiml.message(reply)
 
     # Send photo as proper WhatsApp media attachment
-    PHOTOS = {
-      "Venue": [
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554532/pool_o22ofq.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/chateau_nyuad5.jpg",
-      ],
-      "Cedric": [
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/teo_birth_yffa3h.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/party_i0dozh.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554530/cedric_emily_jndh8h.jpg",
-      ],
-      "Emily": [
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/teo_birth_yffa3h.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/party_i0dozh.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554530/cedric_emily_jndh8h.jpg",
-      ],
-      "Teo": [
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554530/Teo_s1u3xw.jpg",
-          "https://i.imgur.com/tT0IzSx.jpeg",
-      ],
-      "Family": [
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/cedric_family_hq4kdy.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/family_snkgd1.jpg",
-      ],
-      "Gruissan": [
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554532/gruissan_ct5cut.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/gruissan3_bfqlnp.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/gruissan1_uhl1cq.jpg",
-          "https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554529/gruissan2_tcc1t6.jpg",
-      ],
-      "Carcassonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/carcassonne_s75xuu.jpg"],
-      "Narbonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554532/gruissan_ct5cut"],
-      #"Narbonne": ["https://res.cloudinary.com/dxgeaoi32/image/upload/v1774554531/narbonne_yr1pad.jpg"], 
-      
-    }
+   PHOTOS = {
+    "Venue": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554532/pool_o22ofq",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554529/chateau_nyuad5",
+    ],
+    "Cedric": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/teo_birth_yffa3h",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/party_i0dozh",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554530/cedric_emily_jndh8h",
+    ],
+    "Emily": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/teo_birth_yffa3h",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/party_i0dozh",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554530/cedric_emily_jndh8h",
+    ],
+    "Teo": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554530/Teo_s1u3xw",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/teo_birth_yffa3h",
+    ],
+    "Family": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/cedric_family_hq4kdy",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/family_snkgd1",
+    ],
+    "Gruissan": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554532/gruissan_ct5cut",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554529/gruissan3_bfqlnp",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554529/gruissan1_uhl1cq",
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554529/gruissan2_tcc1t6",
+    ],
+    "Carcassonne": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/carcassonne_s75xuu",
+    ],
+    "Narbonne": [
+        "https://res.cloudinary.com/dxgeaoi32/image/upload/f_jpg/v1774554531/narbonne_yr1pad",
+    ],
+}
 
 
     # Only run photo matching if guest is asking for a photo

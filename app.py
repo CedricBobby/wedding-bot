@@ -208,13 +208,48 @@ def webhook():
       "Narbonne": ["https://i.imgur.com/u7RnXAo.jpeg"],  
     }
 
-    for keyword, url in PHOTOS.items():
-        if keyword in reply.lower() or keyword in incoming_msg.lower():
-            msg.media(url)
-            break
+
+    # Only run photo matching if guest is asking for a photo
+    photo_trigger = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=10,
+        messages=[{
+            "role": "user",
+            "content": f"""Is the guest asking for a photo or image?
+Guest message: "{incoming_msg}"
+Reply with YES or NO only."""
+        }]
+    )
+
+    wants_photo = photo_trigger.content[0].text.strip().upper() == "YES"
+    print(f"DEBUG wants_photo: {wants_photo}")
+
+    if wants_photo:
+        photo_categories = list(PHOTOS.keys())
+        category_response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=20,
+            messages=[{
+                "role": "user",
+                "content": f"""The guest said: "{incoming_msg}"
+
+Which ONE of these photo categories best matches?
+Categories: {photo_categories}
+If none match, reply with: none
+
+Reply with ONLY the category name, nothing else."""
+            }]
+        )
+
+        matched = category_response.content[0].text.strip()
+        print(f"DEBUG photo match: {matched}")
+
+        if matched in PHOTOS:
+            for url in PHOTOS[matched]:
+                msg.media(url)
 
     return str(twiml)
-
+    
 @app.route("/", methods=["GET"])
 def health():
     return "Emily & Cédric Wedding Bot is running! 🎉"

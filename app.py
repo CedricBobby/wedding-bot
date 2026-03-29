@@ -38,7 +38,7 @@ Friday, July 3:
 - 2:00 PM: Tennis match — Patrick (Téo's godfather) vs. Cédric
 - 4:00 PM: Check-in to hotel
 - 6:00 PM: Welcome dinner + celebration of Cédric's 50th birthday
-- Dress code: ALL WHITE
+- Dress code: WHITE TOPS
 
 Saturday, July 4:
 - Breakfast
@@ -47,8 +47,8 @@ Saturday, July 4:
 - Lunch
 - 5:00 PM: Outdoor wedding ceremony followed by Téo's baptism
 - Evening: Vin d'honneur, dinner, dancing and party
-- Dress code: COCKTAIL ATTIRE (tenue de cocktail); Cocktail (en francais: tenue de cocktail). Suit and tie for men. Cocktail dresses for women.
-  - English guide: https://www.brides.com/cocktail-attire-wedding-4844364
+- Dress code: SEMI-FORMAL (tenue chic decontractee); Slacks with collared shirt and optional jacket. No tie necessary. Elevated summer dress or jumpsuit for women.
+  - English guide: https://www.theknot.com/content/what-to-wear-semi-formal
   - French guide: https://www.lebowie.com/blogue-de-bouffe-fr/quest-ce-que-la-tenue-cocktail-un-guide-moderne-pour-bien-shabiller-loccasion
 
 Sunday, July 5:
@@ -109,12 +109,6 @@ By train to Béziers (nearest station):
 - From Montpellier: 1 hour
 - From Narbonne: 20 minutes
 
-Flight booking tips:
-- Best prices: 2–4 months before departure
-- Best day to book: Sunday
-- Cheapest travel days: Tuesday–Thursday
-- Use Google Flights, Hopper, or Skyscanner for alerts
-
 THINGS TO DO NEARBY:
 1. Carcassonne Castle — medieval walled city, 1 hour away. Great for families. https://www.remparts-carcassonne.fr/en
 2. Gruissan — Cédric & Emily's home village. Beach, old village, great oysters. https://www.gruissan-mediterranee.com/en
@@ -133,8 +127,6 @@ WINE TASTING:
 
 KEY CONTACTS:
 - Local wedding planner is Mathilde: +33 6 61 81 11 78
-- Cédric's mobile: +1-650-703-8790
-- Emily's mobile: +1-925-818-7169
 - Emily's parents: Alan and Patricia (Pat)
 - Cédric's parents: Catherine (Cathy) and Jean-Paul
 

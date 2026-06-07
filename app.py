@@ -228,7 +228,8 @@ def webhook():
     # Only run photo matching if guest is asking for a photo
     try:
         photo_trigger = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            #model="claude-sonnet-4-20250514",
+            model="claude-haiku-4-5-20251001",
             max_tokens=10,
             messages=[{
                 "role": "user",

@@ -44,8 +44,10 @@ Saturday, July 4:
 - Breakfast
 - Morning activities: swimming, tennis, ping pong, outdoor games
 - 8:00–9:30 AM: Tennis tournament (tie-break matches)
+- 10:00-11:30 AM: Petanque tournament
 - Lunch
-- 5:00 PM: Outdoor wedding ceremony followed by Téo's baptism
+- 2:00-3:30 PM: Pool party
+- 5:00 PM or 6:00 PM: Outdoor wedding ceremony
 - Evening: Vin d'honneur, dinner, dancing and party
 - Dress code: SEMI-FORMAL (tenue chic decontractee); Slacks with collared shirt and optional jacket. No tie necessary. Elevated summer dress or jumpsuit for women.
   - Guide: https://www.theknot.com/content/what-to-wear-semi-formal
@@ -54,6 +56,7 @@ Saturday, July 4:
 Sunday, July 5:
 - Farewell brunch
 - Check-out by 11:00 AM
+- For those who are interested, Téo's baptism will take place at the Puisserguier church at 11:30 AM
 
 ACCOMMODATIONS & MEALS:
 We have reserved the entire château and hope you'll stay with us on the property. All meals and accommodations from Friday dinner through Sunday brunch will be provided. We want this to feel like a true holiday, and a time to relax and connect with each other.
